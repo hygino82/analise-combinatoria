@@ -2,7 +2,7 @@ let txtTotal = document.getElementById("n-total");
 let txtAgrupados = document.getElementById("n-agrupados");
 let btnCalcula = document.getElementById("btn-calcula");
 let resultado = document.getElementById("resultado");
-let opcao = document.getElementById("opcao");
+let escolha = document.getElementById("escolha");
 let parte2 = document.getElementById("parte2");
 
 function fatorial(x) {
@@ -20,41 +20,45 @@ function arranjo(n, p) {
 }
 
 function combinacao(n, p) {
-  // console.log("Executando combinação");
   const valor = fatorial(n) / (fatorial(n - p) * fatorial(p));
   return valor;
 }
 
 function mudarOpcao() {
-  const escolha = opcao.value == "3";
-  if (escolha) {
-    parte2.style = "display: none";
+  console.log("Mudando a escolha");
+  console.log(`Opção = ${escolha.value}`);
+  if (Number(escolha.value) == 3) {
+    parte2.style.display = "none";
   } else {
-    parte2.style = "display: block";
+    parte2.style.display = "block";
   }
 }
 
-opcao.addEventListener("change", mudarOpcao, false);
+escolha.addEventListener("change", mudarOpcao, false);
 
 function calcula() {
   const total = Number(txtTotal.value);
   const agrupados = Number(txtAgrupados.value);
 
   if (total >= agrupados) {
-    switch (Number(opcao.value)) {
+    switch (Number(escolha.value)) {
       case 1:
         resultado.innerHTML = `<h3>Arranjo simples</h3>`;
         resultado.innerHTML += `<h4>n = ${total}  p = ${agrupados}</h4>`;
         const v1 = arranjo(total, agrupados);
         resultado.innerHTML += `<h4>A_${total},${agrupados} = ${v1}</h4>`;
-        // console.log(`A_${total},${agrupados} = ${v1}`);
         break;
       case 2:
         resultado.innerHTML = `<h3>Combinação simples</h3>`;
         resultado.innerHTML += `<h4>n = ${total}  p = ${agrupados}</h4>`;
         const v2 = combinacao(total, agrupados);
         resultado.innerHTML += `<h4>C_${total},${agrupados} = ${v2}</h4>`;
-        // console.log(`C_${total},${agrupados} = ${v2}`);
+        break;
+      case 3:
+        resultado.innerHTML = `<h3>Permutação</h3>`;
+        resultado.innerHTML += `<h4>n = ${total}</h4>`;
+        const v3 = fatorial(total);
+        resultado.innerHTML += `<h4>${total}! = ${v3}</h4>`;
         break;
       default:
         resultado.innerHTML = `<p>Opção inválida</p>`;
