@@ -1,0 +1,17 @@
+body {
+  padding: 10px;
+  margin: 5px;
+  margin-bottom: 10px;
+}
+
+#entrada {
+  border-radius: 5px;
+  background-color: rosybrown;
+  border: 2px solid darkblue;
+}
+
+#resultado {
+  border-radius: 5px;
+  background-color: rgb(34, 198, 127);
+  border: 1px dashed black;
+}
